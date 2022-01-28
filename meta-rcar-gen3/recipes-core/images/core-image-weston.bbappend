@@ -30,9 +30,8 @@ remove_gfx_mmp_files() {
 
 do_create_release_package_append() {
     GFXMMP_DIR=${DEPLOY_DIR}/release/gfx_mmp
-    rm -rf ${BINARY_DIR} ${GFXMMP_DIR}
-    mkdir -p ${BINARY_DIR} ${GFXMMP_DIR}
-    cp -f ${DEPLOY_DIR_IMAGE}/gfx_mmp.tar.bz2 \
-        -t ${GFXMMP_DIR}/
+    rm -rf ${GFXMMP_DIR}
+    mkdir -p ${GFXMMP_DIR}
+    cp -f ${DEPLOY_DIR_IMAGE}/gfx_mmp.tar.bz2 -t ${GFXMMP_DIR}/
 }
 
