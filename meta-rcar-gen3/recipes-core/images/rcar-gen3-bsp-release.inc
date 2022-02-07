@@ -1,7 +1,6 @@
 PN_append = "-release"
 
 IMAGE_INSTALL_append = " kernel-devicetree"
-IMAGE_INSTALL_append = " renesas-bsp-rom-writer flash-writer"
 
 ARCH = "${@'32' if d.getVar('TARGET_ARCH') == 'arm' else '64'}"
 
@@ -27,7 +26,7 @@ do_create_release_package() {
         | xargs -i rm -rf {}
 
     # Copy renesas-bsp-rom-writer
-    if [ -e ${DEPLOY_DIR_IMAGE}/renesas-bsp-rom-writer_${ARCH}bit]; then
+    if [[ -e ${DEPLOY_DIR_IMAGE}/renesas-bsp-rom-writer_${ARCH}bit ]]; then
         cp -rf ${DEPLOY_DIR_IMAGE}/renesas-bsp-rom-writer_${ARCH}bit -t ${BINARY_DIR}/ipl
     fi
 }
