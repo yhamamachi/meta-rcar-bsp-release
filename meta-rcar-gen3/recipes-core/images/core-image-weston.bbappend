@@ -19,12 +19,12 @@ remove_gfx_mmp_files() {
     rm -rf ${DEPLOY_DIR_IMAGE}/gfx_mmp
     mkdir -p ${DEPLOY_DIR_IMAGE}/gfx_mmp
 
-    if [[ -e ${BASE_WORKDIR}/${MACHINE}-poky-linux/gles-user-module/1.0-r0/image ]]; then
+    if [ -e ${BASE_WORKDIR}/${MACHINE}-poky-linux/gles-user-module/1.0-r0/image ]; then
         cp -rpf ${BASE_WORKDIR}/${MACHINE}-poky-linux/gles-user-module/1.0-r0/image/* \
             -t ${DEPLOY_DIR_IMAGE}/gfx_mmp
     fi
 
-    if [[ -e ${BASE_WORKDIR}/${MACHINE}-poky-linux/omx-user-module/1.0-r0/image ]]; then
+    if [ -e ${BASE_WORKDIR}/${MACHINE}-poky-linux/omx-user-module/1.0-r0/image ]; then
         cp -rpf ${BASE_WORKDIR}/${MACHINE}-poky-linux/omx-user-module/1.0-r0/image/* \
             -t ${DEPLOY_DIR_IMAGE}/gfx_mmp
     fi
