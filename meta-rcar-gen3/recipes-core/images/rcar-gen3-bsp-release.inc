@@ -1,6 +1,7 @@
 PN_append = "-release"
 
 IMAGE_INSTALL_append = " kernel-devicetree"
+IMAGE_INSTALL_append = " kernel-module-auto-installer"
 
 ARCH = "${@'32' if d.getVar('TARGET_ARCH') == 'arm' else '64'}"
 
@@ -15,6 +16,7 @@ do_create_release_package() {
     mkdir -p ${BINARY_DIR}/rootfs/ ${BINARY_DIR}/ipl/
     cp -rf ${DEPLOY_DIR}/licenses -t ${BINARY_DIR}
     cp -f ${DEPLOY_DIR_IMAGE}/${PN}-${MACHINE}.wic* -t ${BINARY_DIR}/rootfs
+    cp -f ${DEPLOY_DIR_IMAGE}/modules-${MACHINE}.tgz -t ${BINARY_DIR}/rootfs
     cp -f ${DEPLOY_DIR_IMAGE}/*.srec -t ${BINARY_DIR}/ipl
 
     # source

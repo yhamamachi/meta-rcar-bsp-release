@@ -6,9 +6,3 @@ WKS_FILE = "${@bb.utils.contains('DISTRO_FEATURES', 'docker', \
 
 IMAGE_INSTALL_append = " kernel-modules"
 
-ROOTFS_POSTPROCESS_COMMAND_append = "copy_kernel_modules; "
-copy_kernel_modules() {
-    install -d ${IMAGE_ROOTFS}/boot/
-    install -m 644 ${DEPLOY_DIR_IMAGE}/modules-${MACHINE}.tgz ${IMAGE_ROOTFS}/boot/
-}
-
