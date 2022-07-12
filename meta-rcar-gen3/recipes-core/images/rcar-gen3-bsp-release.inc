@@ -21,9 +21,13 @@ do_create_release_package() {
 
     # source
     mkdir -p ${SOURCE_DIR}/yocto-layers
-    cp -rpf ${DEPLOY_DIR}/sources -t ${SOURCE_DIR}
+    cp -rf ${DEPLOY_DIR}/sources -t ${SOURCE_DIR}
     ls -d ${TOPDIR}/../poky ${TOPDIR}/../meta-* \
         | xargs -i cp -rpf {} -t ${SOURCE_DIR}/yocto-layers/
+    export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+    for repo in `ls -d ${SOURCE_DIR}/yocto-layers/*`; do
+        cd ${repo}; rm -f .gitignore; git clean -df; git reset --hard;
+    done
     find ${SOURCE_DIR}/yocto-layers -name ".git" \
         | xargs -i rm -rf {}
 
