@@ -15,9 +15,10 @@ remove_gfx_mmp_files() {
         \( -name "*gles-user-module*" -o -name "*omx-user-module*" \) )
     if [ -n "${RPMS}" ] ;then
         if [ -n "$(type rpm2cpio | grep ' is ')" ] && [ -n "$(type cpio | grep ' is ')" ]; then
+            cd ${DEPLOY_DIR_IMAGE}/gfx_mmp
             for rpm in $(find ${DEPLOY_DIR}/rpm/${MACHINE}/ -type f \
                 \( -name "*gles-user-module*" -o -name "*omx-user-module*" \) ); do
-                    rpm2cpio ${rpm} | cpio -id -D ${DEPLOY_DIR_IMAGE}/gfx_mmp
+                    rpm2cpio ${rpm} | cpio -id
             done
         else
             echo =========================================
